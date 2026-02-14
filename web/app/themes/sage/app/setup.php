@@ -185,3 +185,11 @@ add_action('customize_register', function (\WP_Customize_Manager $wp_customize) 
         'type' => 'url',
     ]);
 });
+
+/**
+ * Enregistrement du CPT Projet (image, titre, description, lien, galerie technologies).
+ *
+ * @return void
+ */
+add_action('init', [\App\PostTypes\Projet::class, 'registerPostType'], 0);
+add_action('init', [\App\PostTypes\Projet::class, 'register'], 1);

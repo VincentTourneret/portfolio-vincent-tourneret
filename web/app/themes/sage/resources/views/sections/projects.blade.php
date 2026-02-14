@@ -4,28 +4,35 @@
       {{ __('Mes projets', 'sage') }}
     </h2>
     <ul class="animate-on-scroll-stagger grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      @foreach ([
-        ['title' => 'Fabien Électricien', 'desc' => __('Site vitrine pour un électricien à Besançon : dépannage d’urgence, installation électrique neuve, rénovation et mise aux normes. Membre de Baticoop.', 'sage'), 'tags' => ['WordPress', 'Tailwind', 'Sage'], 'url' => 'https://www.fabienelectricien.fr/'],
-        ['title' => __('Projet B', 'sage'), 'desc' => __('E-commerce ou outil métier – description courte.', 'sage'), 'tags' => ['Next.js', 'React']],
-        ['title' => __('Projet C', 'sage'), 'desc' => __('Refonte ou MVP – technologies et livrables.', 'sage'), 'tags' => ['Sage', 'PHP']],
-      ] as $project)
+      @foreach ($projects ?? [] as $project)
         <li class="group">
-          <article class="glass-panel h-full rounded-2xl border border-brand-light/10 p-6 transition-shadow hover:shadow-lg sm:p-8">
-            <h3 class="mb-2 text-xl font-semibold text-brand-light group-hover:text-brand-accent transition-colors">{{ $project['title'] }}</h3>
-            <p class="mb-4 text-brand-light/80">{{ $project['desc'] }}</p>
-            <ul class="flex flex-wrap gap-2" aria-label="{{ __('Technologies', 'sage') }}">
-              @foreach ($project['tags'] as $tag)
-                <li><span class="rounded-lg bg-brand-accent/20 px-3 py-1 text-sm text-brand-accent">{{ $tag }}</span></li>
-              @endforeach
-            </ul>
-            @if (!empty($project['url']))
-              <p class="mt-4">
-                <a href="{{ esc_url($project['url']) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-accent hover:underline focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-dark rounded">
-                  {{ __('Voir le site', 'sage') }}
-                  <span aria-hidden="true">→</span>
-                </a>
-              </p>
+          <article class="glass-panel h-full rounded-2xl border border-brand-light/10 overflow-hidden transition-shadow hover:shadow-lg">
+            @if (!empty($project['image_url']))
+              <a href="{{ !empty($project['url']) ? esc_url($project['url']) : '#' }}" class="block aspect-video w-full overflow-hidden bg-brand-light/5" @if(!empty($project['url'])) target="_blank" rel="noopener noreferrer" @endif>
+                <img src="{{ esc_url($project['image_url']) }}" alt="" class="h-full w-full object-cover transition-transform group-hover:scale-105" loading="lazy" width="400" height="225">
+              </a>
             @endif
+            <div class="p-6 sm:p-8">
+              <h3 class="mb-2 text-xl font-semibold text-brand-light transition-colors group-hover:text-brand-accent">{{ $project['title'] }}</h3>
+              <p class="mb-4 text-brand-light/80">{{ $project['desc'] }}</p>
+              @if (!empty($project['technologies']))
+                <ul class="flex flex-wrap gap-2" aria-label="{{ __('Technologies utilisées', 'sage') }}">
+                  @foreach ($project['technologies'] as $tech)
+                    <li>
+                      <img src="{{ esc_url($tech['url']) }}" alt="" class="h-8 w-8 rounded-lg object-contain bg-brand-light/10 p-0.5" width="32" height="32" loading="lazy">
+                    </li>
+                  @endforeach
+                </ul>
+              @endif
+              @if (!empty($project['url']))
+                <p class="mt-4">
+                  <a href="{{ esc_url($project['url']) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded text-sm font-medium text-brand-accent hover:underline focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-dark">
+                    {{ __('Voir le site', 'sage') }}
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </p>
+              @endif
+            </div>
           </article>
         </li>
       @endforeach

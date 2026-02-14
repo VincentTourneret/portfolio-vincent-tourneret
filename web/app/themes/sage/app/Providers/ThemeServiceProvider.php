@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\View\Composers\Projects as ProjectsComposer;
+use Illuminate\Support\Facades\View;
 use Roots\Acorn\Sage\SageServiceProvider;
 
 class ThemeServiceProvider extends SageServiceProvider
@@ -24,5 +26,7 @@ class ThemeServiceProvider extends SageServiceProvider
     public function boot()
     {
         parent::boot();
+
+        View::composer('sections.projects', ProjectsComposer::class);
     }
 }
