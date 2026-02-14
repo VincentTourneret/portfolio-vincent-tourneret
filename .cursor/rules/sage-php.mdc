@@ -1,0 +1,25 @@
+---
+description: Conventions PHP du thème Sage (setup, filters, View Composers, Acorn)
+globs: "**/web/app/themes/sage/app/**/*.php"
+alwaysApply: false
+---
+
+# Sage — PHP (app/)
+
+## Namespace et organisation
+
+- Namespace racine du thème : `App\` (ex. `App\Providers\ThemeServiceProvider`, `App\View\Composers\App`).
+- **setup.php** : `add_action('after_setup_theme', ...)`, `add_action('widgets_init', ...)`, `add_filter` pour le bloc editor / theme.json / Vite. Rester lisible et commenté.
+- **filters.php** : filtres thématiques (ex. `excerpt_more`). Éviter la logique métier lourde ; déléguer à des classes si besoin.
+- **Providers** : `App\Providers\ThemeServiceProvider` étend `Roots\Acorn\Sage\SageServiceProvider` ; enregistrer vues, composers, etc. dans `register()` / `boot()`.
+
+## View Composers
+
+- Classes dans `app/View/Composers/`. Associer une vue à des données dans le provider : `View::composer('layouts.app', AppComposer::class)`.
+- Utiliser le type-hint `View` ou `Illuminate\Contracts\View\View` et passer les variables via `$view->with(...)`.
+
+## Bonnes pratiques
+
+- Utiliser les helpers Acorn/Vite pour les assets : `Vite::asset('resources/css/editor.css')`, `Vite::withEntryPoints([...])->toHtml()` dans le back-office.
+- Early return dans les callbacks : vérifier le contexte (ex. `get_current_screen()?->is_block_editor()`) avant d’exécuter du code.
+- Pas de sortie HTML directe dans les filters/actions sauf quand c’est voulu (ex. injection script/style). Préférer retourner des valeurs pour les filtres.

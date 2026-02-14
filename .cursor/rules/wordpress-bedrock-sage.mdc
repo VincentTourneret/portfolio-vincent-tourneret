@@ -1,0 +1,30 @@
+---
+description: Conventions générales WordPress avec Bedrock et Sage (structure, config, chemins)
+globs: "**/web/app/themes/sage/**/*,**/config/**/*,.env*,composer.json"
+alwaysApply: false
+---
+
+# WordPress + Bedrock + Sage — Conventions générales
+
+## Structure du projet
+
+- **Bedrock** : racine = répertoire du projet. WordPress core dans `web/wp`, thème Sage dans `web/app/themes/sage`.
+- **Config** : `.env` à la racine (jamais commiter les secrets). `config/` pour la config PHP (application, database, etc.).
+- **Thème Sage** : `app/` = PHP (setup, filters, providers, View Composers), `resources/` = vues Blade, CSS, JS, assets. Build Vite → `public/build/`.
+
+## Chemins et URLs
+
+- `WP_HOME` et `WP_SITEURL` dans `.env` (ex. `WP_SITEURL="${WP_HOME}/wp"`).
+- Dans le thème : utiliser les helpers Roots/Acorn (`public_path()`, `asset()`) et `@vite()` / `Vite::asset()` pour les assets compilés.
+- Ne pas hardcoder `/wp-admin` ou chemins absolus ; utiliser `home_url()`, `admin_url()` ou les helpers du thème.
+
+## Dépendances
+
+- **PHP** : gérer les paquets WordPress (plugins/thèmes) via Composer (`wpackagist`, `installer-paths` dans `composer.json`). Plugins/thèmes dans `web/app/plugins/`, `web/app/themes/`.
+- **Assets du thème** : `package.json` dans `web/app/themes/sage/`, build avec Vite (`npm run dev` / `npm run build`). Entrées définies dans `vite.config.js` et chargées via `@vite()` dans les layouts Blade.
+
+## Bonnes pratiques
+
+- Toujours échapper la sortie en Blade : `{{ $var }}` ou `{!! !!}` seulement si le contenu est intentionnellement HTML et sécurisé.
+- Utiliser le text domain `'sage'` pour les chaînes traduisibles : `__('Texte', 'sage')`.
+- Pour la config sensible : uniquement `.env` ; pas de clés en dur dans le code.

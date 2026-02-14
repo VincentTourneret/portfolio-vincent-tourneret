@@ -1,0 +1,41 @@
+@import "tailwindcss" theme(static);
+@source "../views/";
+@source "../../app/";
+
+/* Polices Montserrat (variable) et Spectral */
+@import "@fontsource-variable/montserrat";
+@import "@fontsource/spectral/latin.css";
+@import "@fontsource/spectral/latin-400-italic.css";
+@import "@fontsource/spectral/latin-500.css";
+@import "@fontsource/spectral/latin-600.css";
+@import "@fontsource/spectral/latin-700.css";
+
+@theme {
+  /* Polices */
+  --font-family-montserrat: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-family-spectral: "Spectral", ui-serif, Georgia, serif;
+
+  /* Palette personnalisée */
+  --color-brand-dark: #0C1519;
+  --color-brand-surface: #162127;
+  --color-brand-muted: #3A3534;
+  --color-brand-accent: #724B35;
+  --color-brand-light: #CF9D7B;
+
+  /* Fonds alternés pour les sections (variations de la palette) */
+  --section-bg-a: #0C1519;
+  --section-bg-b: #162127;
+  --section-bg-c: #0f191e;
+  --section-bg-d: #1a2832;
+  --section-bg-e: #131d24;
+  --section-bg-f: #1e2d38;
+
+  /* Liquid glass – variables réutilisables */
+  --glass-bg: color-mix(in srgb, var(--color-brand-surface) 72%, transparent);
+  --glass-border: color-mix(in srgb, var(--color-brand-light) 18%, transparent);
+  --glass-highlight: color-mix(in srgb, var(--color-brand-light) 12%, transparent);
+  --glass-shadow: 0 8px 32px rgba(12, 21, 39, 0.35);
+  --glass-shadow-strong: 0 16px 48px rgba(12, 21, 39, 0.4);
+}
+
+@import "./main.scss";

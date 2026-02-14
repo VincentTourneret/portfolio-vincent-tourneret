@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bedrock-app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      # Montage du projet : le dossier "web" du projet est le document root Bedrock
+      - .:/var/www/html
+    environment:
+      DB_HOST: db
+      WP_HOME: ${WP_HOME:-http://localhost:8080}
+      WP_SITEURL: ${WP_SITEURL:-http://localhost:8080/wp}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - bedrock
+
+  db:
+    image: mysql:8.0
+    container_name: bedrock-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-wordpress}
+      MYSQL_USER: ${DB_USER:-wordpress}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-wordpress}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - bedrock
+
+volumes:
+  db_data:
+
+networks:
+  bedrock:
+    driver: bridge
