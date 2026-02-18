@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Requis pour le build Docker : génère .next/standalone utilisé par le Dockerfile
+  output: "standalone",
   // Réduit les requêtes bloquantes : le CSS est inliné dans le HTML au lieu d’un <link>
   experimental: {
     inlineCss: true,
