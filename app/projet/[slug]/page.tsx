@@ -8,6 +8,7 @@ import {
 } from "@/lib/data/projects";
 import { getSimpleIconUrl } from "@/lib/data/expertise";
 import { SiteContainer } from "@/components/SiteContainer";
+import { JsonLdBreadcrumb } from "@/components/JsonLd";
 import { siteName, siteUrl } from "@/lib/config";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -69,8 +70,33 @@ export default async function ProjetPage({ params }: Props) {
 
   if (!project) notFound();
 
+  const canonical = `${siteUrl}/projet/${slug}`;
+  const breadcrumbs = [
+    { name: "Accueil", url: siteUrl },
+    { name: "Projets", url: `${siteUrl}/#projets` },
+    { name: project.title, url: canonical },
+  ];
+  const creativeWorkLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork" as const,
+    name: project.title,
+    description: project.description,
+    url: canonical,
+    author: { "@type": "Person" as const, name: siteName },
+    ...(project.image && {
+      image: `${siteUrl}${project.image.startsWith("/") ? "" : "/"}${project.image}`,
+    }),
+    ...(project.url && { mainEntityOfPage: { "@id": project.url } }),
+    inLanguage: "fr-FR",
+  };
+
   return (
     <article className="projet-single e-content w-full pt-24 pb-16 sm:py-20 lg:py-24">
+      <JsonLdBreadcrumb items={breadcrumbs} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkLd) }}
+      />
       <SiteContainer>
         <header className="mb-8">
           {project.image && (

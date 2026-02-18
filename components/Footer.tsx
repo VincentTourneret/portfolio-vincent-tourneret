@@ -29,7 +29,7 @@ export function Footer() {
                 loading="lazy"
               />
             </Link>
-            <p className="text-center text-sm text-brand-light/70 sm:text-left">
+            <p className="text-center text-sm text-brand-light/90 sm:text-left">
               &copy; {currentYear} {siteName}. Tous droits réservés.
             </p>
           </div>
@@ -42,7 +42,7 @@ export function Footer() {
                 href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded p-1 text-brand-light/70 transition-colors hover:text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-surface"
+                className="rounded p-1 text-brand-light/90 transition-colors hover:text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-surface"
                 aria-label="LinkedIn"
               >
                 <svg
@@ -58,7 +58,7 @@ export function Footer() {
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded p-1 text-brand-light/70 transition-colors hover:text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-surface"
+                className="rounded p-1 text-brand-light/90 transition-colors hover:text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-surface"
                 aria-label="GitHub"
               >
                 <svg
@@ -81,13 +81,13 @@ export function Footer() {
             >
               <Link
                 href="/mentions-legales"
-                className="rounded text-brand-light/70 transition-colors hover:text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-surface"
+                className="rounded text-brand-light/90 transition-colors hover:text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-surface"
               >
                 Mentions légales
               </Link>
               <Link
                 href="/contact"
-                className="rounded text-brand-light/70 transition-colors hover:text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-surface"
+                className="rounded text-brand-light/90 transition-colors hover:text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-surface"
               >
                 Contact
               </Link>

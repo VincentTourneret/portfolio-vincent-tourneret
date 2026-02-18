@@ -3,6 +3,7 @@ import Link from "next/link";
 import { siteName, siteUrl } from "@/lib/config";
 import { getLegalConfig } from "@/lib/data/legal";
 import { SiteContainer } from "@/components/SiteContainer";
+import { JsonLdBreadcrumb } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Mentions légales",
@@ -26,12 +27,18 @@ export default function MentionsLegalesPage() {
 
   return (
     <article className="mentions-legales w-full pt-24 pb-16 sm:py-20 lg:py-24">
+      <JsonLdBreadcrumb
+        items={[
+          { name: "Accueil", url: siteUrl },
+          { name: "Mentions légales", url: `${siteUrl}/mentions-legales` },
+        ]}
+      />
       <SiteContainer>
         <header className="mb-12">
           <h1 className="font-serif text-3xl font-bold tracking-tight text-brand-light sm:text-4xl">
             Mentions légales
           </h1>
-          <p className="mt-2 text-brand-light/70">
+          <p className="mt-2 text-brand-light/90">
             Dernière mise à jour :{" "}
             {new Date().toLocaleDateString("fr-FR", {
               day: "numeric",

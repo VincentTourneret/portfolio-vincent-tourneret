@@ -31,7 +31,7 @@ export default function NotFound() {
               <span className="text-brand-accent">←</span>{" "}
               <span className="text-red-400/90">404</span> Not Found
             </p>
-            <p className="pt-2 text-brand-light/70">
+            <p className="pt-2 text-brand-light/90">
               Route non exportée. Vérifiez l’URL ou revenez à l’accueil.
             </p>
           </div>

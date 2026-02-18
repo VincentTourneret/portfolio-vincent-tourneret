@@ -2,6 +2,8 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { JsonLdBreadcrumb } from "@/components/JsonLd";
+import { siteUrl } from "@/lib/config";
 
 // Sections below the fold : chargement différé du JS pour réduire le bundle initial (~282 KiB)
 const Services = dynamic(
@@ -35,6 +37,7 @@ const Expertise = dynamic(
 export default function Home() {
   return (
     <AnimateOnScroll>
+      <JsonLdBreadcrumb items={[{ name: "Accueil", url: siteUrl }]} />
       <Hero />
       <About />
       <Services />

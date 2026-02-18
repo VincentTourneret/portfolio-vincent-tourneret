@@ -274,7 +274,7 @@ export const ContactForm: React.FC = () => {
           )}
         </button>
         {status === "success" && (
-          <span className="text-sm text-brand-light/70">
+          <span className="text-sm text-brand-light/90">
             Vous pouvez envoyer un autre message si besoin.
           </span>
         )}

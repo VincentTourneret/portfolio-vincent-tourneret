@@ -12,7 +12,7 @@ export function Hero() {
     >
       <SiteContainer className="relative z-10 flex w-full flex-col items-center justify-center gap-8 lg:flex-row lg:items-center lg:gap-10">
         <div className="hero__text relative z-10 w-full max-w-2xl flex-1 text-center lg:max-w-none lg:text-left">
-          <p className="hero-reveal hero-reveal--0 mb-6 text-sm font-bold uppercase tracking-widest text-brand-accent">
+          <p className="hero-reveal hero-reveal--0 mb-6 text-sm font-bold uppercase tracking-widest text-brand-accent-contrast">
             Bienvenue sur mon portfolio
           </p>
           <h1 className="hero-reveal hero-reveal--1 mb-5 font-serif text-5xl font-bold tracking-tight text-brand-light sm:text-6xl lg:text-7xl">
@@ -42,7 +42,7 @@ export function Hero() {
                 Voir mes projets
               </a>
             </div>
-            <span className="flex items-center gap-3 text-brand-light/70">
+            <span className="flex items-center gap-3 text-brand-light/90">
               <a
                 href={linkedinUrl}
                 target="_blank"

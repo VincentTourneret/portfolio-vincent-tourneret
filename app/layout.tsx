@@ -3,7 +3,15 @@ import { Montserrat, Spectral } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { siteName, siteUrl, siteDescription } from "@/lib/config";
+import {
+  siteName,
+  siteUrl,
+  siteDescription,
+  siteKeywords,
+  verificationGoogle,
+  verificationBing,
+} from "@/lib/config";
+import { JsonLd } from "@/components/JsonLd";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -26,6 +34,10 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`,
   },
   description: siteDescription,
+  keywords: siteKeywords,
+  authors: [{ name: siteName, url: siteUrl }],
+  creator: siteName,
+  publisher: siteName,
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -68,6 +80,13 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/favicon/site.webmanifest",
+  alternates: { canonical: siteUrl },
+  ...((verificationGoogle || verificationBing) && {
+    verification: {
+      ...(verificationGoogle && { google: verificationGoogle }),
+      ...(verificationBing && { other: { "msvalidate.01": verificationBing } }),
+    },
+  }),
 };
 
 export const viewport: Viewport = {
@@ -95,6 +114,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <JsonLd />
         <div
           id="cursor-focus-ring"
           className="cursor-focus-ring"

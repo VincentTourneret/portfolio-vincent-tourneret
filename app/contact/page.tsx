@@ -3,6 +3,7 @@ import Link from "next/link";
 import { siteName, siteUrl, linkedinUrl, githubUrl } from "@/lib/config";
 import { SiteContainer } from "@/components/SiteContainer";
 import { ContactForm } from "@/components/ContactForm";
+import { JsonLdBreadcrumb } from "@/components/JsonLd";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
@@ -42,6 +43,12 @@ function ContactFormFallback() {
 export default function ContactPage() {
   return (
     <article className="contact relative w-full overflow-hidden pt-32 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24">
+      <JsonLdBreadcrumb
+        items={[
+          { name: "Accueil", url: siteUrl },
+          { name: "Contact", url: `${siteUrl}/contact` },
+        ]}
+      />
       <div className="contact__bg pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-40">
         <div
           className="absolute -left-1/4 top-1/4 h-[32rem] w-[32rem] rounded-full bg-brand-accent/15 blur-3xl"
