@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Montserrat, Spectral } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
@@ -101,6 +102,18 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`scroll-smooth scroll-pt-[5.5rem] ${montserrat.variable} ${spectral.variable}`}>
       <body className="min-h-screen bg-brand-dark font-[family-name:var(--font-family-montserrat)] text-brand-light antialiased">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-G5PNG2ENCH"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-G5PNG2ENCH');
+          `}
+        </Script>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:w-auto focus:h-auto focus:p-3 focus:px-4 focus:m-0 focus:overflow-visible focus:bg-brand-accent focus:text-white focus:rounded-lg focus:font-semibold focus:outline-none"
