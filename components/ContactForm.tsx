@@ -54,7 +54,7 @@ export const ContactForm: React.FC = () => {
       if (!parsed.success) {
         const errors: FieldErrors = {};
         const zodErrors = parsed.error as z.ZodError<ContactFormData>;
-        zodErrors.errors.forEach((err) => {
+        zodErrors.issues.forEach((err) => {
           const path = err.path[0] as keyof ContactFormData;
           if (path && !errors[path]) {
             errors[path] = err.message;

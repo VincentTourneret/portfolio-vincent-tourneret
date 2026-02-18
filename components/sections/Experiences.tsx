@@ -140,12 +140,12 @@ export function Experiences() {
     >
       <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
         <Image
-          src="/images/bg-3.jpg"
+          src="/images/bg-3.jpg?v=2"
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
-          width={1920}
-          height={1080}
-          sizes="100vw"
+          width={1090}
+          height={1920}
+          sizes="100vh"
           quality={90}
           loading="lazy"
           fetchPriority="low"

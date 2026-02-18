@@ -88,12 +88,13 @@ export default function ContactPage() {
             </Suspense>
           </section>
 
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-6">
+          <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6">
             <span className="text-sm text-brand-light/60">
               Ou retrouvez-moi sur :
             </span>
-            <a
-              href={linkedinUrl}
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+              <a
+                href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-xl border border-brand-light/20 bg-brand-surface/50 px-5 py-3 text-brand-light transition-colors hover:border-brand-accent hover:bg-brand-surface focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-dark"
@@ -128,6 +129,7 @@ export default function ContactPage() {
               </svg>
               GitHub
             </a>
+            </div>
           </div>
 
           <p className="mt-12 text-center">
