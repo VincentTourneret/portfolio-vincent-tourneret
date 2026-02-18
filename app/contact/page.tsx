@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Contact | Vincent Tourneret",
     description: "Contactez Vincent Tourneret, développeur web freelance.",
   },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 function ContactFormFallback() {
@@ -41,7 +41,7 @@ function ContactFormFallback() {
 
 export default function ContactPage() {
   return (
-    <article className="contact relative w-full overflow-hidden pt-24 pb-16 sm:py-20 lg:py-24">
+    <article className="contact relative w-full overflow-hidden pt-32 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24">
       <div className="contact__bg pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-40">
         <div
           className="absolute -left-1/4 top-1/4 h-[32rem] w-[32rem] rounded-full bg-brand-accent/15 blur-3xl"

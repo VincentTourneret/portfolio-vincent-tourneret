@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
 import { siteName } from "@/lib/config";
 import { SiteContainer } from "@/components/SiteContainer";
@@ -17,8 +16,6 @@ const navLinks = [
 ];
 
 export function Header() {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
   const [menuOpen, setMenuOpen] = useState(false);
 
   const openMenu = useCallback(() => {
@@ -50,7 +47,7 @@ export function Header() {
     <>
       <header
         id="site-header"
-        className={`banner animate-header-in fixed left-0 right-0 z-50 w-full transition-[top] duration-300 ease-out ${isHome ? "banner--scroll banner--visible" : "banner--visible"}`}
+        className="banner banner--scroll banner--visible animate-header-in fixed left-0 right-0 z-50 w-full transition-[top] duration-300 ease-out"
         role="banner"
       >
         <SiteContainer>

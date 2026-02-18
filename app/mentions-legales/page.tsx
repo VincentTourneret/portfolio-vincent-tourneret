@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     locale: "fr_FR",
   },
   twitter: { card: "summary", title: "Mentions légales | Vincent Tourneret" },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 export default function MentionsLegalesPage() {

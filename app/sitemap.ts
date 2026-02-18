@@ -2,19 +2,13 @@ import type { MetadataRoute } from "next";
 import { siteUrl } from "@/lib/config";
 import { getAllProjectSlugs } from "@/lib/data/projects";
 
+/** Sitemap généré pour le SEO (servi à /sitemap.xml). */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = siteUrl;
+  const base = siteUrl.replace(/\/$/, ""); // pas de slash final
   const slugs = getAllProjectSlugs();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base, lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
-    { url: `${base}/contact`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.8 },
-    {
-      url: `${base}/mentions-legales`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
   ];
 
   const projectRoutes: MetadataRoute.Sitemap = slugs.map((slug) => ({
