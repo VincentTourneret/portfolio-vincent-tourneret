@@ -3,6 +3,7 @@ import { Montserrat, Spectral } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { siteName, siteUrl, siteDescription } from "@/lib/config";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -19,12 +20,54 @@ const spectral = Spectral({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Vincent Tourneret – Développeur Web Fullstack",
-    template: "%s | Vincent Tourneret",
+    default: `${siteName} – Développeur Web Fullstack`,
+    template: `%s | ${siteName}`,
   },
-  description:
-    "Développeur web fullstack freelance à Besançon. Applications web, e-commerce, React, Next.js, WordPress.",
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: siteUrl,
+    siteName,
+    title: `${siteName} – Développeur Web Fullstack`,
+    description: siteDescription,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${siteName} – Développeur web fullstack`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteName} – Développeur Web Fullstack`,
+    description: siteDescription,
+    images: ["/opengraph-image"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: [
+      { url: "/favicon/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon/favicon.ico", type: "image/x-icon", sizes: "any" },
+    ],
+    shortcut: "/favicon/favicon.ico",
+    apple: [
+      {
+        url: "/favicon/apple-touch-icon.png",
+        type: "image/png",
+        sizes: "180x180",
+      },
+    ],
+  },
+  manifest: "/favicon/site.webmanifest",
 };
 
 export const viewport: Viewport = {
@@ -37,19 +80,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${montserrat.variable} ${spectral.variable}`}>
-      <head>
-        <link
-          rel="preload"
-          as="image"
-          href="/images/photo.png"
-          fetchPriority="high"
-        />
-      </head>
-      <body className="min-h-screen bg-brand-dark text-brand-light antialiased">
+    <html lang="fr" className={`scroll-smooth scroll-pt-[5.5rem] ${montserrat.variable} ${spectral.variable}`}>
+      <body className="min-h-screen bg-brand-dark font-[family-name:var(--font-family-montserrat)] text-brand-light antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:w-auto focus:h-auto focus:p-3 focus:px-4 focus:m-0 focus:overflow-visible focus:bg-brand-accent focus:text-white focus:rounded-lg focus:font-semibold focus:outline-none"
         >
           Aller au contenu
         </a>

@@ -1,39 +1,40 @@
 import Image from "next/image";
+import Link from "next/link";
 import { linkedinUrl, githubUrl } from "@/lib/config";
+import { SiteContainer } from "@/components/SiteContainer";
 
 export function Hero() {
   return (
     <section
       id="hero"
-      className="hero relative flex min-h-screen items-center justify-center overflow-hidden py-10 pt-16 pb-10 sm:py-12 sm:pt-20 sm:pb-12"
+      className="hero relative flex min-h-screen items-center justify-center overflow-hidden bg-[hsl(198_35%_7%)] py-10 pt-32 pb-36 sm:py-12 sm:pt-20 sm:pb-12 lg:pt-28"
       aria-label="Accueil"
     >
-      <div className="hero__mesh" aria-hidden="true" />
-      <div className="site-container relative z-10 flex w-full flex-col items-center justify-center gap-8 lg:flex-row lg:items-center lg:gap-10">
+      <SiteContainer className="relative z-10 flex w-full flex-col items-center justify-center gap-8 lg:flex-row lg:items-center lg:gap-10">
         <div className="hero__text relative z-10 w-full max-w-2xl flex-1 text-center lg:max-w-none lg:text-left">
-          <p className="mb-6 text-sm font-bold uppercase tracking-widest text-brand-accent">
+          <p className="hero-reveal hero-reveal--0 mb-6 text-sm font-bold uppercase tracking-widest text-brand-accent">
             Bienvenue sur mon portfolio
           </p>
-          <h1 className="mb-5 font-serif text-5xl font-bold tracking-tight text-brand-light sm:text-6xl lg:text-7xl">
+          <h1 className="hero-reveal hero-reveal--1 mb-5 font-serif text-5xl font-bold tracking-tight text-brand-light sm:text-6xl lg:text-7xl">
             Développeur Web Fullstack
           </h1>
-          <h2 className="mb-8 font-serif text-2xl font-semibold tracking-tight text-brand-light/90 sm:text-3xl lg:text-4xl">
+          <h2 className="hero-reveal hero-reveal--2 mb-8 font-serif text-2xl font-semibold tracking-tight text-brand-light/90 sm:text-3xl lg:text-4xl">
             Vincent TOURNERET | Freelance à Besançon
           </h2>
-          <p className="mx-auto mb-14 max-w-2xl text-lg text-brand-light-contrast sm:text-lg">
+          <p className="hero-reveal hero-reveal--3 mx-auto mb-14 max-w-2xl text-lg text-brand-light-contrast sm:text-lg">
             Je conçois des applications web et des plateformes e commerce
             performantes, sécurisées et optimisées SEO. De l&apos;architecture
             technique à la mise en production, j&apos;interviens sur des projets
             sur mesure à forte exigence métier.
           </p>
-          <div className="flex flex-col items-center gap-6 lg:items-start">
+          <div className="hero-reveal hero-reveal--4 flex flex-col items-center gap-6 lg:items-start">
             <div className="flex flex-wrap items-center justify-center gap-5 lg:justify-start">
-              <a
-                href="#contact"
+              <Link
+                href="/contact"
                 className="inline-flex items-center rounded-xl bg-brand-accent px-6 py-3 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-brand-accent/90 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-dark active:scale-[0.98]"
               >
                 Me contacter
-              </a>
+              </Link>
               <a
                 href="#projets"
                 className="inline-flex items-center rounded-xl border border-brand-light/30 bg-brand-surface/50 px-6 py-3 text-base font-medium text-brand-light backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-brand-light/50 hover:bg-brand-surface focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-dark active:scale-[0.98]"
@@ -82,20 +83,21 @@ export function Hero() {
           </div>
         </div>
         <div
-          className="hero__photo-wrapper hero__photo-wrapper--fixed w-full shrink-0 lg:max-w-[457px]"
+          className="hero-reveal--img relative flex justify-center items-center w-full mb-4 overflow-hidden shrink-0 lg:max-w-[457px] lg:mb-0 aspect-square lg:aspect-[600/800]"
           aria-hidden="true"
         >
           <Image
-            src="/images/photo.png"
+            src="/images/photo.jpg"
             alt="Photo de Vincent Tourneret, développeur fullstack freelance"
-            className="hero__photo mx-auto rounded-2xl"
+            className="w-[400px] h-[400px] object-cover object-center rounded-2xl block mx-auto"
             width={457}
             height={525}
             priority
+            fetchPriority="high"
             sizes="(max-width: 1023px) 100vw, 457px"
           />
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

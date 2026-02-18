@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { siteName, linkedinUrl, githubUrl } from "@/lib/config";
+import { SiteContainer } from "@/components/SiteContainer";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,10 +9,10 @@ export function Footer() {
   return (
     <footer
       id="contact"
-      className="content-info mt-auto w-full py-8"
+      className="mt-auto w-full py-8 bg-[var(--section-bg-a)]"
       role="contentinfo"
     >
-      <div className="site-container py-10">
+      <SiteContainer className="py-10">
         <div className="flex flex-col items-center justify-between gap-4 border-t border-brand-light/10 pt-8 sm:flex-row">
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:gap-4">
             <Link
@@ -85,7 +86,7 @@ export function Footer() {
                 Mentions légales
               </Link>
               <Link
-                href="/#contact"
+                href="/contact"
                 className="rounded text-brand-light/70 transition-colors hover:text-brand-light focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-surface"
               >
                 Contact
@@ -93,7 +94,7 @@ export function Footer() {
             </nav>
           </div>
         </div>
-      </div>
+      </SiteContainer>
     </footer>
   );
 }

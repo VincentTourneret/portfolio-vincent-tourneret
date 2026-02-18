@@ -35,7 +35,7 @@ export const projects: Project[] = [
     title: 'Cortexa',
     description: 'Logiciel créé pour la prise de note et mise en relation de connaissance à la demande d’un médecin',
     url: 'https://cortexa.caprover.vincent-tourneret.fr',
-    image: '/images/cortexa.png',
+    image: '/images/cortexa.jpg',
     technologies: [
       { iconSlug: 'nextdotjs', alt: 'Next.js' },
       { iconSlug: 'react', alt: 'React' },
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     title: 'Fabien Electricien',
     description: 'Site vitrine pour un electricien. Site headless avec Next.js et Tailwind CSS et backend WordPress.',
     url: 'https://fabienelectricien.fr',
-    image: '/images/fabienelectricien.png',
+    image: '/images/fabienelectricien.jpg',
     technologies: [
       { iconSlug: 'wordpress', alt: 'WordPress' },
       { iconSlug: 'nextdotjs', alt: 'Next.js' },
@@ -61,8 +61,8 @@ export const projects: Project[] = [
     slug: 'votre-projet',
     title: 'Votre projet',
     description: 'Et si l\'on parlait de votre projet ? Je suis à votre écoute pour vous aider à le réaliser.',
-    url: 'https://vincent-tourneret.fr',
-    image: '/images/votre-projet.jpg',
+    url: 'https://vincent-tourneret.fr/contact',
+    image: '/images/projet.jpg',
     technologies: [],
     content: '<p>Contenu détaillé...</p>',
   },

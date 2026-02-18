@@ -1,16 +1,17 @@
 import Image from "next/image";
 import { projects } from "@/lib/data/projects";
 import { getSimpleIconUrl } from "@/lib/data/expertise";
+import { SiteContainer } from "@/components/SiteContainer";
 
 export function Projects() {
   if (projects.length === 0) {
     return (
       <section
         id="projets"
-        className="projects w-full py-16 sm:py-20 lg:py-24"
+        className="w-full py-16 sm:py-20 lg:py-24 bg-[var(--section-bg-e)]"
         aria-labelledby="projects-heading"
       >
-        <div className="site-container">
+        <SiteContainer>
           <h2
             id="projects-heading"
             className="animate-on-scroll mb-12 text-center font-serif text-3xl font-bold tracking-tight text-brand-light sm:text-4xl"
@@ -24,7 +25,7 @@ export function Projects() {
             </code>
             .
           </p>
-        </div>
+        </SiteContainer>
       </section>
     );
   }
@@ -32,10 +33,10 @@ export function Projects() {
   return (
     <section
       id="projets"
-      className="projects w-full py-16 sm:py-20 lg:py-24"
+      className="w-full py-16 sm:py-20 lg:py-24 bg-[var(--section-bg-e)]"
       aria-labelledby="projects-heading"
     >
-      <div className="site-container">
+      <SiteContainer>
         <h2
           id="projects-heading"
           className="animate-on-scroll mb-12 text-center font-serif text-3xl font-bold tracking-tight text-brand-light sm:text-4xl"
@@ -45,7 +46,7 @@ export function Projects() {
         <ul className="animate-on-scroll-stagger grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <li key={project.slug} className="group">
-              <article className="glass-panel h-full overflow-hidden rounded-2xl border border-brand-light/10 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg">
+              <article className="h-full overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] shadow-[0_8px_32px_rgba(12,21,39,0.35),inset_0_1px_0_var(--glass-highlight)] backdrop-blur-[20px] transition-all duration-300 hover:scale-[1.01] hover:shadow-lg">
                 {project.image && (
                   <a
                     href={project.url || "#"}
@@ -109,7 +110,7 @@ export function Projects() {
             </li>
           ))}
         </ul>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

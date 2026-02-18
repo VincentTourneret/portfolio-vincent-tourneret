@@ -5,6 +5,7 @@ import {
   type ExperienceIcon,
 } from "@/lib/data/experiences";
 import Image from "next/image";
+import { SiteContainer } from "@/components/SiteContainer";
 
 function Icon({ name }: { name: ExperienceIcon }) {
   if (name === "briefcase")
@@ -134,21 +135,23 @@ export function Experiences() {
   return (
     <section
       id="experiences"
-      className="experiences experiences--with-bg relative w-full py-16 sm:py-20 lg:py-24"
+      className="experiences experiences--with-bg relative w-full bg-[var(--section-bg-d)] bg-cover bg-center bg-no-repeat py-16 sm:py-20 lg:py-24"
       aria-labelledby="experiences-heading"
     >
       <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
         <Image
-          src="/images/bg-3.png"
+          src="/images/bg-3.jpg"
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
-          width={960}
-          height={540}
+          width={1920}
+          height={1080}
+          sizes="100vw"
+          quality={90}
           loading="lazy"
           fetchPriority="low"
         />
       </div>
-      <div className="site-container relative z-10">
+      <SiteContainer className="relative z-10">
         <h2
           id="experiences-heading"
           className="animate-on-scroll mb-12 text-center font-serif text-3xl font-bold tracking-tight text-brand-light sm:text-4xl"
@@ -167,7 +170,7 @@ export function Experiences() {
             <TimelineEvent key={i} event={event} index={i} />
           ))}
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

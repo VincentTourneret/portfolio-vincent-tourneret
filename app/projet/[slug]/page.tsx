@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,12 +7,60 @@ import {
   getAllProjectSlugs,
 } from "@/lib/data/projects";
 import { getSimpleIconUrl } from "@/lib/data/expertise";
+import { SiteContainer } from "@/components/SiteContainer";
+import { siteName, siteUrl } from "@/lib/config";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
   const slugs = getAllProjectSlugs();
   return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+  if (!project) return { title: "Projet" };
+
+  const title = project.title;
+  const description =
+    project.description ||
+    `Projet réalisé par ${siteName} – ${project.technologies.map((t) => t.alt).join(", ")}`;
+  const canonical = `${siteUrl}/projet/${slug}`;
+  const ogImage = project.image
+    ? `${siteUrl}${project.image.startsWith("/") ? "" : "/"}${project.image}`
+    : undefined;
+
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName,
+      type: "article",
+      locale: "fr_FR",
+      ...(ogImage && {
+        images: [
+          {
+            url: ogImage,
+            width: 800,
+            height: 450,
+            alt: project.title,
+          },
+        ],
+      }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      ...(ogImage && { images: [ogImage] }),
+    },
+    robots: { index: true, follow: true },
+  };
 }
 
 export default async function ProjetPage({ params }: Props) {
@@ -21,8 +70,8 @@ export default async function ProjetPage({ params }: Props) {
   if (!project) notFound();
 
   return (
-    <article className="projet-single e-content w-full py-16 sm:py-20 lg:py-24">
-      <div className="site-container">
+    <article className="projet-single e-content w-full pt-24 pb-16 sm:py-20 lg:py-24">
+      <SiteContainer>
         <header className="mb-8">
           {project.image && (
             <figure className="mb-6 overflow-hidden rounded-2xl">
@@ -96,7 +145,7 @@ export default async function ProjetPage({ params }: Props) {
             Retour aux projets
           </Link>
         </p>
-      </div>
+      </SiteContainer>
     </article>
   );
 }

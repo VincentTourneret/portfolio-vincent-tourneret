@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { SiteContainer } from "@/components/SiteContainer";
 
 export function About() {
   return (
     <section
       id="a-propos"
-      className="about relative w-full overflow-hidden py-16 sm:py-20 lg:py-24"
+      className="about relative w-full overflow-hidden bg-[var(--section-bg-b)] py-16 sm:py-20 lg:py-24"
       aria-labelledby="about-heading"
     >
       <div
@@ -12,7 +13,7 @@ export function About() {
         aria-hidden="true"
       >
         <Image
-          src="/images/workspace.png"
+          src="/images/workspace.jpg"
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
           width={960}
@@ -21,7 +22,7 @@ export function About() {
           fetchPriority="low"
         />
       </div>
-      <div className="site-container relative z-10">
+      <SiteContainer className="relative z-10">
         <div className="animate-on-scroll mx-auto max-w-4xl rounded-2xl border border-brand-light/10 bg-brand-surface p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl sm:p-10 lg:p-12">
           <h2
             id="about-heading"
@@ -49,7 +50,7 @@ export function About() {
             </p>
           </div>
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

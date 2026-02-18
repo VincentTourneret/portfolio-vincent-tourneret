@@ -1,18 +1,32 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { siteName } from "@/lib/config";
+import { siteName, siteUrl } from "@/lib/config";
 import { getLegalConfig } from "@/lib/data/legal";
+import { SiteContainer } from "@/components/SiteContainer";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Mentions légales",
-  description: "Mentions légales et informations juridiques.",
+  description:
+    "Mentions légales, CGU et informations juridiques du site Vincent Tourneret.",
+  alternates: { canonical: `${siteUrl}/mentions-legales` },
+  openGraph: {
+    title: "Mentions légales | Vincent Tourneret",
+    description: "Mentions légales et informations juridiques du site.",
+    url: `${siteUrl}/mentions-legales`,
+    siteName,
+    type: "website",
+    locale: "fr_FR",
+  },
+  twitter: { card: "summary", title: "Mentions légales | Vincent Tourneret" },
+  robots: { index: true, follow: true },
 };
 
 export default function MentionsLegalesPage() {
   const legal = getLegalConfig(siteName);
 
   return (
-    <article className="mentions-legales w-full py-16 sm:py-20 lg:py-24">
-      <div className="site-container">
+    <article className="mentions-legales w-full pt-24 pb-16 sm:py-20 lg:py-24">
+      <SiteContainer>
         <header className="mb-12">
           <h1 className="font-serif text-3xl font-bold tracking-tight text-brand-light sm:text-4xl">
             Mentions légales
@@ -170,7 +184,7 @@ export default function MentionsLegalesPage() {
             Retour à l&apos;accueil
           </Link>
         </p>
-      </div>
+      </SiteContainer>
     </article>
   );
 }

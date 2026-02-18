@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
 import { siteName } from "@/lib/config";
+import { SiteContainer } from "@/components/SiteContainer";
 
 const navLinks = [
   { href: "#a-propos", label: "À propos" },
@@ -11,10 +13,12 @@ const navLinks = [
   { href: "#experiences", label: "Expérience" },
   { href: "#projets", label: "Projets" },
   { href: "#expertise", label: "Expertise" },
-  { href: "#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Header() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [menuOpen, setMenuOpen] = useState(false);
 
   const openMenu = useCallback(() => {
@@ -46,11 +50,11 @@ export function Header() {
     <>
       <header
         id="site-header"
-        className="banner banner--scroll banner--visible animate-header-in fixed left-0 right-0 z-50 w-full"
+        className={`banner animate-header-in fixed left-0 right-0 z-50 w-full transition-[top] duration-300 ease-out ${isHome ? "banner--scroll banner--visible" : "banner--visible"}`}
         role="banner"
       >
-        <div className="site-container">
-          <div className="banner__inner relative flex w-full items-center justify-between gap-4 rounded-2xl border border-brand-light/10 px-5 py-4 shadow-sm transition-shadow duration-300 hover:shadow-md sm:px-6 sm:py-4 lg:px-8 lg:py-4">
+        <SiteContainer>
+          <div className="banner__inner relative flex w-full items-center justify-between gap-4 rounded-2xl border border-brand-light/10 bg-brand-surface px-5 py-4 shadow-sm transition-shadow duration-300 hover:shadow-md sm:px-6 sm:py-4 lg:px-8 lg:py-4">
             <Link
               href="/"
               className="brand flex items-center rounded focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-dark"
@@ -98,7 +102,7 @@ export function Header() {
               </ul>
             </nav>
           </div>
-        </div>
+        </SiteContainer>
       </header>
 
       <div

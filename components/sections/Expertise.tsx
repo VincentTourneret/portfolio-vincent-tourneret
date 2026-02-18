@@ -3,17 +3,18 @@ import {
   getSimpleIconUrl,
 } from "@/lib/data/expertise";
 import Image from "next/image";
+import { SiteContainer } from "@/components/SiteContainer";
 
 export function Expertise() {
   return (
     <section
       id="expertise"
-      className="expertise expertise--with-bg relative w-full py-16 sm:py-20 lg:py-24"
+      className="expertise expertise--with-bg relative w-full bg-[var(--section-bg-f)] bg-cover bg-center bg-no-repeat py-16 sm:py-20 lg:py-24"
       aria-labelledby="expertise-heading"
     >
       <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
         <Image
-          src="/images/bg-1.png"
+          src="/images/bg-1.jpg"
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
           width={1920}
@@ -22,7 +23,7 @@ export function Expertise() {
           fetchPriority="low"
         />
       </div>
-      <div className="site-container relative z-10">
+      <SiteContainer className="relative z-10">
         <h2
           id="expertise-heading"
           className="animate-on-scroll mb-12 text-center font-serif text-3xl font-bold tracking-tight text-brand-light sm:text-4xl"
@@ -36,7 +37,7 @@ export function Expertise() {
           {expertiseCards.map((card, i) => (
             <li key={card.title}>
               <article
-                className={`glass-panel expertise-card expertise-card--${i} h-full rounded-2xl border p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg sm:p-8`}
+                className={`expertise-card expertise-card--${i} h-full rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] shadow-[0_8px_32px_rgba(12,21,39,0.35),inset_0_1px_0_var(--glass-highlight)] backdrop-blur-[10px] p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg sm:p-8`}
               >
                 <div className="expertise-card__logos mb-4 flex flex-wrap justify-center gap-3">
                   {card.techs.map((tech) => (
@@ -62,7 +63,7 @@ export function Expertise() {
             </li>
           ))}
         </ul>
-      </div>
+      </SiteContainer>
     </section>
   );
 }
